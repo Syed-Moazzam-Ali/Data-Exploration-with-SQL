@@ -1,0 +1,58 @@
+DATA EXPLOARATION WITH postgreSQL
+
+
+CREATE TABLE Netflix (
+show_id VARCHAR(5),
+	"type" VARCHAR,
+	title VARCHAR,
+	director VARCHAR,
+	"cast" VARCHAR,
+	country VARCHAR,
+	date_added DATE,
+	release_year int,
+	rating VARCHAR,
+	duration VARCHAR,
+	listed_in VARCHAR,
+	description VARCHAR
+);
+
+COPY Netflix
+FROM 'A:\Data Analyst\Datasets\netflix_titles.csv'
+WITH(FORMAT CSV, HEADER);
+
+Showing types of content on netflix
+
+SELECT DISTINCT "type"
+FROM netflix;
+
+SORTING content based on released_year from latest to older
+
+SELECT "type", title, release_year, country, rating, duration
+FROM netflix
+ORDER BY release_year DESC;
+
+Name of the movies produced only in Turkey.
+
+SELECT title
+FROM netflix
+WHERE country = 'Turkey' and type = 'Movie'
+
+Latest TV-shows and movies having horror genre.
+
+SELECT "type", title, release_year
+FROM netflix
+WHERE listed_in ILIKE '%horror%'
+ORDER BY release_year DESC;
+
+Number of movies produced by United States
+
+SELECT COUNT(country)
+FROM netflix
+WHERE "type" = 'Movie' AND country ILIKE '%United States%'; 
+
+TV-Show having the most number of seasons in specific country
+
+SELECT MAX(duration), country
+FROM netflix
+WHERE "type" = 'TV Show'
+GROUP BY country;
