@@ -1,2 +1,2 @@
 # Data-Exploration-with-SQL
-Using Netflix dataset I did some exploratory analysis
+Using Netflix dataset I did some exploratory analysis in SQL.
